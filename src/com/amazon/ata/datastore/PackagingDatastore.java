@@ -25,7 +25,9 @@ public class PackagingDatastore {
             createFcPackagingOption("IAD2", Material.CORRUGATE, "20", "20", "20"),
             createFcPackagingOption("PDX1", Material.CORRUGATE, "40", "40", "40"),
             createFcPackagingOption("PDX1", Material.CORRUGATE, "60", "60", "60"),
-            createFcPackagingOption("PDX1", Material.CORRUGATE, "60", "60", "60")
+            createFcPackagingOption("PDX1", Material.CORRUGATE, "60", "60", "60"),
+            createFcPackagingOption("IAD2", Material.LAMINATED_PLASTIC, "2000"),
+            createFcPackagingOption("IAD2", Material.LAMINATED_PLASTIC, "10000")
     );
 
     /**
@@ -35,7 +37,14 @@ public class PackagingDatastore {
                                                       String length, String width, String height) {
         FulfillmentCenter fulfillmentCenter = new FulfillmentCenter(fcCode);
         Packaging packaging = new Box(material, new BigDecimal(length), new BigDecimal(width),
-                new BigDecimal(height));
+                    new BigDecimal(height));
+
+        return new FcPackagingOption(fulfillmentCenter, packaging);
+    }
+
+    private FcPackagingOption createFcPackagingOption(String fcCode, Material material, String volume) {
+        FulfillmentCenter fulfillmentCenter = new FulfillmentCenter(fcCode);
+        Packaging packaging = new PolyBag(material, new BigDecimal(volume));
 
         return new FcPackagingOption(fulfillmentCenter, packaging);
     }
