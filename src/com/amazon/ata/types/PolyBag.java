@@ -34,4 +34,8 @@ public class PolyBag extends Packaging {
         double mass = Math.ceil(Math.sqrt(volume.doubleValue()) * 0.6);
         return BigDecimal.valueOf(mass);
     }
+
+    public BigDecimal getVolume() {
+        return volume;
+    }
 }
