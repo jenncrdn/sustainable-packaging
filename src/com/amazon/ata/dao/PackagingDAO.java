@@ -8,7 +8,6 @@ import com.amazon.ata.types.FulfillmentCenter;
 import com.amazon.ata.types.Item;
 import com.amazon.ata.types.Packaging;
 import com.amazon.ata.types.ShipmentOption;
-import com.amazonaws.transform.MapEntry;
 
 import java.util.*;
 
@@ -65,7 +64,7 @@ public class PackagingDAO {
 
                 if (fcCode.equals(fulfillmentCenter.getFcCode())) {
                     fcFound = true;
-                    for (FcPackagingOption p : packagingOptions ) {
+                    for (FcPackagingOption p : packagingOptions) {
                         Packaging packaging = p.getPackaging();
                         if (packaging.canFitItem(item)) {
                             result.add(ShipmentOption.builder()

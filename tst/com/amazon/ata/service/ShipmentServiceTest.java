@@ -51,7 +51,7 @@ class ShipmentServiceTest {
         ShipmentOption shipmentOption = shipmentService.findShipmentOption(largeItem, existentFC);
 
         // THEN
-        assertNull(shipmentOption);
+        assertNull(shipmentOption.getPackaging());
     }
 
     @Test
