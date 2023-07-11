@@ -3,6 +3,8 @@ package com.amazon.ata.service;
 import com.amazon.ata.cost.MonetaryCostStrategy;
 import com.amazon.ata.dao.PackagingDAO;
 import com.amazon.ata.datastore.PackagingDatastore;
+import com.amazon.ata.exceptions.NoPackagingFitsItemException;
+import com.amazon.ata.exceptions.UnknownFulfillmentCenterException;
 import com.amazon.ata.types.FulfillmentCenter;
 import com.amazon.ata.types.Item;
 import com.amazon.ata.types.ShipmentOption;
@@ -68,5 +70,14 @@ class ShipmentServiceTest {
 
         // THEN
         assertNull(shipmentOption);
+    }
+
+    @Test
+    public void findShipmentOptions_packagingDoesntFit_throwsNoPackagingFitsItemException() {
+        // GIVEN & WHEN
+        ShipmentOption shipmentOption = shipmentService.findShipmentOption(largeItem, existentFC);
+
+        // THEN
+        assertNull(shipmentOption.getPackaging());
     }
 }
